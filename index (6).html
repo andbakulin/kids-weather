@@ -1,0 +1,879 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Во что одеть ребёнка</title>
+<style>
+:root{--bg:#DDEBF4;--card:#fff;--ink:#1E2B3A;--mut:#5C6C7C;--line:#D3DEE8;--pri:#2B6CB0;--bad:#C0392B;--warn:#FFF4D6}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+body{margin:0;font:16px/1.45 Nunito,system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;background:var(--bg);color:var(--ink)}
+.wrap{max-width:480px;margin:0 auto;padding:16px 16px 48px}
+h1{font-size:26px;font-weight:800;margin:8px 0 4px}
+h2{font-size:18px;font-weight:800;margin:0 0 8px}
+h3{font-size:16px;font-weight:800;margin:20px 0 8px}
+.sub,.mut{color:var(--mut);font-size:14px}
+.card{background:var(--card);border-radius:18px;padding:18px;margin:14px 0;border:1px solid var(--line)}
+label{display:block;font-weight:700;font-size:14px;margin:12px 0 4px}
+input,select{width:100%;padding:12px;font:inherit;border:2px solid var(--line);border-radius:12px;background:#fff;color:var(--ink)}
+input:focus,select:focus,button:focus-visible{outline:3px solid #9CC3EC;outline-offset:1px}
+.chk{display:flex;gap:10px;align-items:flex-start;font-weight:500;font-size:14px;margin:12px 0}
+.chk input{width:22px;height:22px;flex:none;margin:0}
+button{font:inherit;font-weight:800;cursor:pointer;min-height:44px;border-radius:12px;border:0;padding:10px 16px}
+.pri{background:var(--pri);color:#fff;width:100%;margin-top:14px}
+.sec{background:#E8F0F8;color:var(--pri);width:100%;margin-top:10px}
+.danger{background:#fff;color:var(--bad);border:2px solid var(--bad);width:100%;margin-top:24px}
+.ico{background:#fff;border:1px solid var(--line);width:44px;padding:0;font-size:20px}
+.top{display:flex;justify-content:space-between;align-items:center;gap:12px}
+.hi{font-size:22px;font-weight:800}
+.chips{display:flex;gap:8px;flex-wrap:wrap;margin:14px 0 0}
+.chip{background:#fff;border:2px solid var(--line);color:var(--ink);font-weight:700;padding:8px 14px}
+.chip.on{background:var(--ink);border-color:var(--ink);color:#fff}
+.err{background:#FDE3DF;color:#7A1F14;border-radius:12px;padding:12px;margin-bottom:12px;font-size:14px}
+.big{font-size:24px;font-weight:800}
+.meter{display:flex;gap:3px;align-items:flex-end;height:34px;margin:16px 0 4px}
+.meter i{flex:1;height:14px;border-radius:4px;opacity:.55}
+.meter i.on{height:34px;opacity:1;outline:3px solid var(--ink);outline-offset:1px}
+.scale{display:flex;justify-content:space-between;font-size:12px;color:var(--mut)}
+.lv{font-size:20px;font-weight:800;margin:14px 0 8px}
+.cl{display:flex;gap:6px;flex-wrap:wrap}
+.kv{display:grid;grid-template-columns:120px 1fr;gap:4px 12px;padding:9px 0;border-top:1px solid var(--line);font-size:15px}
+.kv b{color:var(--mut);font-size:13px;font-weight:700}
+.note{font-size:14px;color:var(--mut);margin-top:12px}
+.warn{background:var(--warn);border-radius:12px;padding:10px 12px;margin-top:10px;font-size:14px;font-weight:700}
+.res button{display:block;width:100%;text-align:left;background:#fff;border:1px solid var(--line);margin-top:6px;font-weight:700}
+.row{display:flex;gap:8px;margin-top:8px}
+.row button{flex:1}
+.sheet{position:fixed;inset:0;background:rgba(20,30,45,.5);z-index:9;overflow-y:auto}
+.sh{background:var(--bg);max-width:480px;margin:24px auto;border-radius:20px;padding:16px;min-height:60vh}
+.kr{display:flex;justify-content:space-between;align-items:center;gap:8px;padding:10px 0;border-bottom:1px solid var(--line)}
+.kr button{background:none;color:var(--bad);padding:6px 8px;min-height:36px}
+.day{display:flex;gap:6px;overflow-x:auto;margin-top:16px;padding-bottom:4px}
+.day div{min-width:66px;background:#fff;border:2px solid var(--line);border-radius:12px;padding:6px 4px;text-align:center;font-size:12px;color:var(--mut)}
+.day b{display:block;font-size:15px;color:var(--ink)}
+.day i{display:block;height:6px;border-radius:3px;margin:4px 0}
+.day span{display:block}
+.tip{background:#EEF4FA;border-radius:12px;padding:10px 12px;margin-top:8px;font-size:14px;font-weight:700}
+.fb{margin-top:16px;border-top:1px solid var(--line);padding-top:12px}
+.fb .row{display:flex;gap:8px}
+.fb .row button{flex:1;margin:0;background:#EEF4FA;color:var(--ink);font-size:14px;padding:10px 6px}
+.fb .row button:disabled{opacity:.5}
+.res span.mut{display:block;font-weight:500;font-size:12px}
+.chips .chip{width:auto;margin:0;min-height:38px}
+.seg{display:flex;gap:8px;margin-top:14px}
+.seg button{flex:1;margin:0;background:#fff;color:var(--ink);border:2px solid var(--line);font-size:15px}
+.seg button.on{background:var(--ink);color:#fff;border-color:var(--ink)}
+.idea{border-top:1px solid var(--line);padding:12px 0}
+.idea:first-child{border-top:0}
+.idea h3{margin:0 0 4px;font-size:17px}
+.idea p{margin:0 0 8px}
+.idea .meta{display:flex;gap:6px;flex-wrap:wrap}
+.idea .meta span{background:#EEF4FA;border-radius:999px;padding:4px 10px;font-size:12px;font-weight:700;color:var(--mut)}
+.bagrow{display:flex;gap:10px;align-items:flex-start;padding:9px 0;border-top:1px solid var(--line);margin:0;font-weight:500;font-size:15px}
+.bagrow input{width:22px;height:22px;padding:0;margin:1px 0 0;flex:none}
+.bagrow.done span{color:var(--mut);text-decoration:line-through}
+.bagrow .x{margin-left:auto;min-height:30px;padding:2px 8px;background:none;color:var(--mut);font-weight:500}
+#bag h4{margin:14px 0 2px;font-size:13px;color:var(--mut);text-transform:uppercase;letter-spacing:.04em}
+.hero{background:linear-gradient(160deg,#3F86D8 0%,#2A5DA8 100%);color:#fff;border-radius:24px;padding:14px 16px 18px;margin-bottom:12px}
+.citybtn{background:none;color:#fff;font-size:20px;font-weight:800;padding:6px 4px;min-height:40px;text-align:left}
+.hero .ico{background:rgba(255,255,255,.2);color:#fff;border:0}
+.hero .seg{margin-top:10px}
+.hero .seg button{background:rgba(255,255,255,.16);color:#fff;border:0;font-weight:700}
+.hero .seg button.on{background:#fff;color:#2A5DA8}
+.now{display:flex;justify-content:space-between;align-items:center;margin-top:12px}
+.deg{font-size:72px;line-height:1;font-weight:800;letter-spacing:-2px}
+.desc{font-size:22px;font-weight:700;margin-top:6px}
+.mm{font-size:15px;margin-top:2px}
+.wico{font-size:80px;line-height:1}
+.pills{display:flex;gap:8px;overflow-x:auto;margin-top:14px;padding-bottom:2px}
+.pills span{flex:none;background:rgba(10,40,90,.35);border-radius:999px;padding:7px 12px;font-size:14px;font-weight:700;white-space:nowrap}
+#dayp,#act{flex-wrap:nowrap;overflow-x:auto;padding-bottom:2px}
+#dayp .chip,#act .chip{flex:none;padding:6px 12px;min-height:34px;font-size:14px}
+.foot{font-size:12px;color:var(--mut);margin-top:20px}
+</style>
+</head>
+<body>
+<div class="wrap">
+<div id="err" class="err" hidden></div>
+
+<section id="s-reg" hidden>
+ <h1>Во что одеть ребёнка</h1>
+ <p class="sub">Расскажите о себе и ребёнке — советы по одежде будут точнее.</p>
+ <div class="card">
+  <h2>О вас</h2>
+  <label for="r-name">Ваше имя</label><input id="r-name" autocomplete="given-name">
+  <label for="r-mail">Электронная почта</label><input id="r-mail" type="email" autocomplete="email">
+  <label for="r-tel">Телефон (необязательно)</label><input id="r-tel" type="tel" autocomplete="tel">
+ </div>
+ <div class="card"><h2>Ваш ребёнок</h2><div id="r-kid"></div></div>
+ <label class="chk"><input type="checkbox" id="r-ok"><span>Согласен(на) на обработку персональных данных</span></label>
+ <label class="chk"><input type="checkbox" id="r-ad"><span>Хочу получать новости и акции (необязательно)</span></label>
+ <div id="r-err" class="err" hidden></div>
+ <button class="pri" id="r-go">Продолжить</button>
+</section>
+
+<section id="s-home" hidden>
+ <div class="hero">
+  <div class="top">
+   <button class="citybtn" id="b-city" aria-label="Сменить город">📍 <span id="city-now"></span> ▾</button>
+   <button class="ico" id="b-set" aria-label="Профиль и дети">⚙</button>
+  </div>
+  <div class="seg" id="tabs"><button id="t-0" class="on">Одежда</button><button id="t-1">Идеи</button></div>
+  <div class="now">
+   <div><div class="deg" id="hd-t">—</div><div class="desc" id="hd-d"></div><div class="mm" id="hd-mm"></div></div>
+   <div class="wico" id="hd-i"></div>
+  </div>
+  <div class="pills" id="pills"></div>
+ </div>
+
+ <div class="card" id="cpanel" hidden>
+  <div class="row"><input id="q" placeholder="Название города"><button class="pri" style="width:auto;margin:0" id="b-find">Найти</button></div>
+  <div class="row"><button class="sec" style="margin:0" id="b-geo">Определить по геолокации</button></div>
+  <div class="chips" id="quick"></div>
+  <div class="res" id="res"></div>
+ </div>
+
+ <div class="card" id="hours" hidden>
+  <div class="mut" id="hr-sum"></div>
+  <div class="day" id="hr-strip"></div>
+ </div>
+
+ <div id="kids" class="chips"></div>
+
+ <div class="card" id="ideas" hidden>
+  <div class="big" style="font-size:20px" id="id-head"></div>
+  <div class="mut" id="id-sub"></div>
+  <div id="id-warn"></div>
+  <div id="id-list" style="margin-top:8px"></div>
+  <button class="sec" id="id-more">Другие идеи</button>
+  <p class="foot">Идеи — черновик, педиатр их пока не проверял. Оставайтесь рядом с ребёнком, ничего не давайте в рот, при грозе уходите в помещение.</p>
+ </div>
+
+ <div class="card" id="adv" hidden>
+  <div class="top"><div class="big" id="w-main" style="font-size:18px"></div><button class="ico" id="b-share" aria-label="Отправить рекомендацию">↗</button></div>
+  <div class="chips" id="dayp"></div>
+  <div class="mut" id="w-sub"></div>
+  <div class="mut" id="share-msg"></div>
+  <div id="rec" hidden>
+   <div id="actw"><div class="mut" style="margin-top:14px">Как гуляем</div><div class="chips" id="act"></div></div>
+   <div class="meter" id="meter"></div>
+   <div class="scale"><span>жарко</span><span>холодно</span></div>
+   <div class="lv" id="lv-name"></div>
+   <div id="lv-cl"></div>
+   <div class="note" id="lv-note"></div>
+   <div id="lv-warn"></div>
+   <div id="day" class="day"></div>
+   <div id="tips"></div>
+   <button class="sec" id="bag-btn" aria-expanded="false">Что взять с собой ▾</button>
+   <div id="bag" hidden>
+    <div class="mut" style="margin:12px 0 6px">Как долго гуляем</div><div class="chips" id="bag-dur" style="margin-top:0"></div>
+    <div id="bag-list"></div>
+    <div class="row"><input id="bag-in" placeholder="Свой пункт, например: игрушка" maxlength="60"><button class="pri" id="bag-add" style="width:auto;margin:0" aria-label="Добавить пункт">+</button></div>
+    <div class="row"><button class="sec" id="bag-send" style="margin:0">Отправить список</button></div>
+    <div class="note" id="bag-msg">Список зависит от погоды, возраста и длительности прогулки. Лекарства и документы сюда не входят: добавьте свои пункты.</div>
+   </div>
+   <div id="check" class="tip" style="font-weight:500"><b>Как понять, что ребёнку комфортно</b><br>Проверяйте шею или спину под одеждой. Нос и руки могут быть холодными и у здорового ребёнка.<br>Замёрз: плачет, потом затихает, кожа бледнеет.<br>Перегрелся: беспокойный и румяный, одежда под ней влажная.<br>Руки и ноги прохладные после прогулки — норма. Тело холодное — в следующий раз одеть теплее.<br><span class="mut" style="font-size:12px">По руководству «Маме спокойно» и материалам Игнатенко.</span></div>
+   <div id="fbw" class="fb"><div class="mut">Как было на прогулке?</div><div class="row"><button data-f="hot">Жарко</button><button data-f="ok">Нормально</button><button data-f="cold">Холодно</button></div><div class="note" id="fbn"></div></div>
+  </div>
+  <button class="sec" id="b-ref">Обновить погоду</button>
+ </div>
+ <p class="foot">Рекомендации справочные и не заменяют совет врача. Данные погоды: MET Norway. Уровни и поправки — черновик, ждём проверки педиатром.</p>
+</section>
+</div>
+
+<div id="sheet" class="sheet" hidden>
+ <div class="sh">
+  <div class="top"><h2 style="margin:0">Профиль</h2><button class="ico" id="b-x" aria-label="Закрыть">✕</button></div>
+  <div class="card" id="prof"></div>
+  <h3>Дети</h3>
+  <div class="card"><div id="klist"></div>
+   <button class="sec" id="b-addk">+ Добавить ребёнка</button>
+   <div id="addk" hidden><div id="a-kid"></div><div id="a-err" class="err" hidden></div><button class="pri" id="b-savek">Сохранить</button></div>
+  </div>
+  <button class="danger" id="b-out">Удалить данные и выйти</button>
+ </div>
+</div>
+
+<script>
+(function(){
+var $=function(i){return document.getElementById(i)};
+window.onerror=function(m,u,l){var e=$('err');e.hidden=false;e.textContent='Ошибка в приложении: '+m+' (строка '+l+')';};
+
+var CITIES=[["Москва",55.7558,37.6173],["Санкт-Петербург",59.9311,30.3609],["Нижний Новгород",56.3269,44.0075],["Казань",55.7887,49.1221],["Екатеринбург",56.8389,60.6057],["Новосибирск",55.0415,82.9346]];
+var LV=[
+["Жара","Светлая панама или кепка","—","Лёгкая свободная футболка из хлопка или льна","Шорты или лёгкие свободные брюки","Лёгкая дышащая обувь, тонкие носки","Гулять лучше до 11 и после 16, с 12 до 16 не выходить. Пить больше обычного."],
+["Тепло","Панама или кепка на солнце","—","Футболка или тонкая кофта; тонкую кофту с длинным рукавом взять с собой","Шорты или лёгкие брюки","Лёгкие кеды или сандалии с закрытым носком",""],
+["Мягко","Тонкая шапочка или кепка — по ситуации","Тонкие перчатки в кармане","Тонкая кофта с длинным рукавом, поверх лёгкая куртка или ветровка","Лёгкие брюки или тонкие колготки","Кеды или кроссовки без утеплителя",""],
+["Прохладно","Тонкая весенняя шапка и снуд (при ветре закрывать уши)","Тонкие перчатки, если ветер","Лонгслив или тонкая кофта{F}; демисезонная куртка (или толстовка с жилетом) либо демисезонный комбинезон","Брюки или колготки средней плотности","Обувь без утеплителя или лёгкие демисезонные ботинки","Тонкий слой в сумку на случай похолодания."],
+["Свежо","Тёплая демисезонная шапка и снуд","Перчатки или варежки средней плотности","Лонгслив + колготки{F}; демисезонный комбинезон (до 120 г утеплителя) или куртка с брюками","Колготки средней плотности + брюки","Утеплённые демисезонные ботинки (мембрана), носки средней толщины",""],
+["Около нуля","Тёплая шапка, снуд","Варежки","Термобельё или синтетическая кофта + флис; демисезонный комбинезон, 100–180 г утеплителя (при сильном ветре или сырости — зимний)","Колготки или термоштаны","Утеплённые ботинки, шерстяные или термоноски",""],
+["Лёгкий мороз","Тёплая шапка, снуд","Тёплые варежки","Тонкая синтетическая кофта (хлопок быстро намокает) + тёплая кофта или флис; зимний комбинезон","Колготки средней плотности","Зимняя обувь, плотные носки",""],
+["Мороз","Тёплая шапка под капюшон, снуд","Тёплые варежки","Термобельё + водолазка + тёплая кофта; зимний комбинезон","Термоколготки или термоштаны","Зимняя обувь, шерстяные носки поверх тонких",""],
+["Крепкий мороз","Шапка-шлем или шапка под капюшон, снуд (нос и рот плотно не закрывать)","Варежки шерстяные или с подкладкой","Термобельё + флисовый комплект; зимний комбинезон с капюшоном","Термобельё или флис","Валенки или тёплые зимние ботинки, шерстяные носки","Прогулку лучше сделать короче, особенно при ветре."],
+["Сильный мороз","Шапка-шлем, снуд","Двойные варежки","Термобельё + флис; тёплый зимний комбинезон","Термобельё + флис","Валенки или тёплые зимние ботинки, шерстяные носки","Прогулку сократить, чаще проверять руки и ноги."],
+["Опасно","—","—","—","—","—","Лучше остаться дома."]];
+var COL=["#F7C873","#F5B94F","#E9D36A","#BFD87A","#8FCFA0","#6FC3C0","#5BA9D6","#4B8BD6","#4A6CC9","#5A55B8","#6B3FA0"];
+
+var mem={};
+function ld(){try{var v=localStorage.getItem('kid_app');if(v)return JSON.parse(v)}catch(e){}return mem.s||null}
+function sv(){mem.s=S;try{localStorage.setItem('kid_app',JSON.stringify(S))}catch(e){}}
+var S=ld()||{};var W=null,wErr='',H=[],D=[],DAY=0,fbDone=false,TAB=0,ideaCur=null;
+
+function el(t,c,x){var e=document.createElement(t);if(c)e.className=c;if(x!=null)e.textContent=x;return e}
+function pl(n,a,b,c){var d=n%100;if(d>10&&d<20)return c;d=n%10;return d===1?a:(d>1&&d<5?b:c)}
+function ageM(bd){var b=new Date(bd),n=new Date();var m=(n.getFullYear()-b.getFullYear())*12+n.getMonth()-b.getMonth();if(n.getDate()<b.getDate())m--;return m<0?0:m}
+function ageText(bd){
+ var m=ageM(bd);
+ if(m===0)return 'меньше месяца';
+ if(m<12)return m+' '+pl(m,'месяц','месяца','месяцев');
+ if(m<24){var r=m-12;return r?'1 год и '+r+' '+pl(r,'месяц','месяца','месяцев'):'1 год'}
+ var y=Math.floor(m/12);return y+' '+pl(y,'год','года','лет');
+}
+function fmt(t){t=Math.round(t);return (t>0?'+':t<0?'−':'')+Math.abs(t)+'°'}
+function lvl(e){return e>=28?0:e>=21?1:e>=15?2:e>=10?3:e>=5?4:e>=0?5:e>=-5?6:e>=-10?7:e>=-15?8:e>-25?9:10}
+function kid(){var k=null;(S.kids||[]).forEach(function(x){if(x.id===S.kid)k=x});return k||(S.kids||[])[0]}
+
+function kf(p){return '<label for="'+p+'n">Имя ребёнка</label><input id="'+p+'n" autocomplete="off">'+
+ '<label for="'+p+'d">Дата рождения</label><input id="'+p+'d" type="date">'+
+ '<label for="'+p+'t">Как переносит холод</label><select id="'+p+'t"><option value="0">Обычно</option><option value="1">Часто мёрзнет</option><option value="-1">Часто потеет</option></select>'}
+function readKid(p){
+ var n=$(p+'n').value.trim(),d=$(p+'d').value;
+ if(!n)return {e:'Укажите имя ребёнка'};
+ if(!d)return {e:'Укажите дату рождения ребёнка'};
+ var t=new Date(d),now=new Date();
+ if(t>now)return {e:'Дата рождения не может быть в будущем'};
+ if(now.getFullYear()-t.getFullYear()>18)return {e:'Приложение рассчитано на детей до 18 лет'};
+ return {k:{id:Date.now(),name:n,bd:d,t:+$(p+'t').value}};
+}
+function showErr(id,msg){var e=$(id);e.hidden=!msg;e.textContent=msg||''}
+function today(){var d=new Date();return d.getFullYear()+'-'+('0'+(d.getMonth()+1)).slice(-2)+'-'+('0'+d.getDate()).slice(-2)}
+
+function show(id){$('s-reg').hidden=id!=='s-reg';$('s-home').hidden=id!=='s-home'}
+
+function start(){
+ if(!S.user){show('s-reg');return}
+ show('s-home');
+ chips();city();advice();
+ if(S.city&&!W)loadW();
+ if(S.city&&S.city.name==='Моё местоположение')nameCity();
+}
+function nameCity(){
+ fetch('https://api.bigdatacloud.net/data/reverse-geocode-client?latitude='+S.city.lat+'&longitude='+S.city.lon+'&localityLanguage=ru')
+ .then(function(x){return x.json()})
+ .then(function(d){var n=d.city||d.locality||d.principalSubdivision;if(n&&S.city){S.city.name=n;sv();$('city-now').textContent=n}})
+ .catch(function(){});
+}
+function chips(){
+ var box=$('kids');box.innerHTML='';var cur=kid();
+ (S.kids||[]).forEach(function(k){
+  var b=el('button','chip'+(cur&&k.id===cur.id?' on':''),k.name+' · '+ageText(k.bd));
+  b.onclick=function(){S.kid=k.id;sv();chips();advice()};
+  box.appendChild(b);
+ });
+}
+function city(){
+ $('city-now').textContent=S.city?S.city.name:'Выберите город';
+ $('cpanel').hidden=!!S.city&&$('cpanel').dataset.open!=='1';
+ if(!S.city){$('cpanel').hidden=false}
+}
+function setCity(c){S.city=c;sv();W=null;wErr='';$('cpanel').dataset.open='0';$('res').innerHTML='';start()}
+
+function loadW(force){
+ if(!S.city)return;
+ fbDone=false;H=[];D=[];wErr='Загружаю погоду…';advice();
+ var key=S.city.lat.toFixed(2)+','+S.city.lon.toFixed(2)+'|met1';
+ var cache={};try{cache=JSON.parse(localStorage.getItem('wx_cache')||'{}')||{}}catch(e){cache={}}
+ var c=cache[key];
+ if(!force&&c&&Date.now()-c.ts<3600000){applyWx(c.d);return}
+ var u='https://api.met.no/weatherapi/locationforecast/2.0/compact?lat='+S.city.lat.toFixed(4)+'&lon='+S.city.lon.toFixed(4);
+ fetch(u).then(function(r){if(!r.ok)throw new Error('HTTP '+r.status);return r.json()}).then(fromMet)
+ .then(function(d){
+  if(!d.current||!d.daily)throw new Error('нет данных');
+  applyWx(d);
+  cache[key]={ts:Date.now(),d:d};
+  var ks=Object.keys(cache);if(ks.length>5)delete cache[ks[0]];
+  try{localStorage.setItem('wx_cache',JSON.stringify(cache))}catch(e){}
+ })
+ .catch(function(e){W=null;D=[];H=[];wErr='Не удалось получить погоду ('+e.message+'). Проверьте интернет и нажмите «Обновить погоду».';advice()});
+}
+function applyWx(d){W=d.current;H=mkH(d);D=mkD(d);wErr='';ideaCur=null;advice()}
+function p2(n){return (n<10?'0':'')+n}
+function atemp(t,ws,rh){
+ if(t<=10&&ws>=1.3){var k=ws*3.6,q=Math.pow(k,0.16);return 13.12+0.6215*t-11.37*q+0.3965*t*q}
+ if(t>=27){var e=rh/100*6.105*Math.exp(17.27*t/(237.7+t));return Math.max(t,t+0.33*e-0.7*ws-4)}
+ return t;
+}
+function fromMet(j){
+ var ts=j.properties.timeseries,hr={time:[],temperature_2m:[],apparent_temperature:[],wind_speed_10m:[],precipitation_probability:[],cloud_cover:[]};
+ var dm={},days=[],cur=null;
+ function pp(x){var n1=x.data.next_1_hours,n6=x.data.next_6_hours,a1=n1&&n1.details?n1.details.precipitation_amount:null,a6=n6&&n6.details?n6.details.precipitation_amount:null;
+  if(a1!=null)return a1>0?70:0;
+  if(a6!=null)return a6>=0.5?60:(a6>0?30:0);
+  return 0;}
+ function amt(x){var n1=x.data.next_1_hours,n6=x.data.next_6_hours;if(n1&&n1.details&&n1.details.precipitation_amount!=null)return n1.details.precipitation_amount;if(n6&&n6.details&&n6.details.precipitation_amount!=null)return n6.details.precipitation_amount/6;return 0}
+ ts.forEach(function(x){
+  var ins=x.data&&x.data.instant&&x.data.instant.details;if(!ins)return;
+  var d=new Date(x.time),ds=d.getFullYear()+'-'+p2(d.getMonth()+1)+'-'+p2(d.getDate()),h=d.getHours();
+  var t=ins.air_temperature,ws=ins.wind_speed,rh=ins.relative_humidity,cc=ins.cloud_area_fraction,et=atemp(t,ws,rh),P=pp(x),A=amt(x);
+  var isDay=h>=7&&h<=18?1:0;
+  if(!cur){cur={temperature_2m:t,apparent_temperature:et,wind_speed_10m:ws,precipitation:A,cloud_cover:cc,is_day:isDay}}
+  hr.time.push(ds+'T'+p2(h)+':00');hr.temperature_2m.push(t);hr.apparent_temperature.push(et);hr.wind_speed_10m.push(ws);hr.precipitation_probability.push(P);hr.cloud_cover.push(cc);
+  if(!dm[ds]){dm[ds]={t:[],et:[],w:[],pp:[]};days.push(ds)}
+  dm[ds].t.push(t);dm[ds].et.push(et);dm[ds].w.push(ws);dm[ds].pp.push(P);
+ });
+ var dl={time:[],temperature_2m_max:[],temperature_2m_min:[],apparent_temperature_max:[],apparent_temperature_min:[],precipitation_probability_max:[],wind_speed_10m_max:[]};
+ days.forEach(function(ds){var g=dm[ds];dl.time.push(ds);
+  dl.temperature_2m_max.push(Math.max.apply(null,g.t));dl.temperature_2m_min.push(Math.min.apply(null,g.t));
+  dl.apparent_temperature_max.push(Math.max.apply(null,g.et));dl.apparent_temperature_min.push(Math.min.apply(null,g.et));
+  dl.precipitation_probability_max.push(Math.max.apply(null,g.pp));dl.wind_speed_10m_max.push(Math.max.apply(null,g.w));});
+ return {current:cur,hourly:hr,daily:dl,source:'met'};
+}
+function mkD(d){var x=d.daily;if(!x||!x.time)return [];return x.time.map(function(s,i){return {date:s,tmax:x.temperature_2m_max[i],tmin:x.temperature_2m_min[i],etmax:x.apparent_temperature_max[i],etmin:x.apparent_temperature_min[i],pp:x.precipitation_probability_max?x.precipitation_probability_max[i]:0,wmax:x.wind_speed_10m_max?x.wind_speed_10m_max[i]:0,sr:x.sunrise?x.sunrise[i].slice(11,16):null,ss:x.sunset?x.sunset[i].slice(11,16):null}})}
+function infRow(e,windy){
+ if(e>=21)return ['','Панама','—','Боди без рукавов','—','—','Выше +20° не больше одного слоя одежды.'];
+ if(e>=18)return ['','Тонкая шапочка','—','Боди с рукавом или слип','—','—',''];
+ if(e>=15)return ['','Шапочка','—',windy?'Слип + утеплённый комбинезон или кофточка':'Слип','—','—',windy?'Ветрено — на слой теплее.':''];
+ if(e>=10)return ['','Шапочка','—','Слип + демисезонный конверт или комбинезон','—','Носочки',''];
+ if(e>=0)return ['','Вязаная шапочка','Варежки','Боди или слип + утеплённый комбинезон + демисезонный конверт или комбинезон','—','Носочки или пинетки','При ветре укрыть пледом.'];
+ if(e>=-5)return ['','Зимняя шапочка','Варежки','Слип + утеплённый комбинезон или кокон + зимний конверт или комбинезон','—','Носочки и тёплые пинетки',''];
+ if(e>=-10)return ['','Хлопковая шапочка под зимнюю','Варежки','Слип + утеплённый комбинезон с подкладом (или тёплая кофта + комбинезон) + зимний конверт или комбинезон','—','Пинетки',''];
+ if(e>-25)return ['','Хлопковая и зимняя шапочки','Варежки','Слип + утеплённый комбинезон + шерстяной комбинезон + зимний конверт или комбинезон','—','Пинетки','Малышей до года при морозе ниже −10° и ветре лучше не выводить (ориентир из финских рекомендаций).'];
+ return LV[10];
+}
+function mkH(d){var hr=d.hourly;if(!hr||!hr.time)return [];var o=[];hr.time.forEach(function(s,i){var t=hr.temperature_2m[i];o.push({d:s.slice(0,10),h:+s.slice(11,13),t:t,et:(hr.apparent_temperature&&hr.apparent_temperature[i]!=null)?hr.apparent_temperature[i]:t,w:hr.wind_speed_10m?hr.wind_speed_10m[i]:0,pp:hr.precipitation_probability?hr.precipitation_probability[i]:0,cc:hr.cloud_cover?hr.cloud_cover[i]:null})});return o}
+function levelOf(et,k,act){
+ if(lvl(et)>=10)return 10;
+ var inf=ageM(k.bd)<12,tw=+k.t||0,as=inf?0:(act==='stroller'?1:act==='run'?-1:0);
+ var c=(S.cal&&S.cal[k.id])||0;
+ return Math.max(0,Math.min(9,Math.round(lvl(et)+as+tw+c)));
+}
+function fbSet(f){
+ var k=kid();if(!W||!k||fbDone)return;
+ S.cal=S.cal||{};S.fb=S.fb||[];
+ var d=f==='cold'?0.5:f==='hot'?-0.5:0;
+ S.cal[k.id]=Math.max(-2,Math.min(2,(S.cal[k.id]||0)+d));
+ var et=W.apparent_temperature==null?W.temperature_2m:W.apparent_temperature;
+ S.fb.unshift({k:k.id,n:k.name,t:Math.round(W.temperature_2m),et:Math.round(et),f:f,ts:Date.now()});
+ S.fb=S.fb.slice(0,60);sv();fbDone=true;advice();
+}
+var fbDone2=false;
+function sunTxt(){var c=W.cloud_cover;if(W.is_day===0)return 'ночь';if(c==null)return '';return c<25?'ясно':c<70?'переменная облачность':'пасмурно'}
+var SHARETXT='';
+function wxDesc(w){var p=w.precipitation||0,t=w.temperature_2m,cc=w.cloud_cover,n=w.is_day===0;
+ if(p>0)return t<=1?['Снег','🌨️']:['Дождь','🌧️'];
+ if(cc!=null&&cc>=70)return ['Пасмурно','☁️'];
+ if(cc!=null&&cc>=30)return ['Облачно с прояснениями',n?'☁️':'⛅'];
+ return n?['Ясно','🌙']:['Ясно','☀️'];
+}
+function nightH(h){var d=D[0];if(!d||!d.sr)return h<6||h>=21;return h<+d.sr.slice(0,2)||h>+d.ss.slice(0,2)}
+function icoH(x){
+ if(x.pp>=60)return x.t<=1?'🌨️':'🌧️';
+ if(x.cc!=null&&x.cc>=70)return '☁️';
+ if(x.cc!=null&&x.cc>=30)return nightH(x.h)?'☁️':'⛅';
+ return nightH(x.h)?'🌙':'☀️';
+}
+function renderTop(){
+ var pills=$('pills'),hs=$('hours');pills.innerHTML='';
+ if(!S.city||!W){$('hd-t').textContent='—';$('hd-d').textContent=S.city?(wErr||'Погода не загружена'):'Выберите город';$('hd-mm').textContent='';$('hd-i').textContent='';hs.hidden=true;return}
+ var t=W.temperature_2m,et=W.apparent_temperature==null?t:W.apparent_temperature,d0=D[0],ds=wxDesc(W),nf=function(v){return fmt(v).replace('+','')};
+ $('hd-t').textContent=nf(t);$('hd-d').textContent=ds[0];$('hd-i').textContent=ds[1];
+ $('hd-mm').textContent=d0?'Макс.: '+nf(d0.tmax)+'   Мин.: '+nf(d0.tmin):'';
+ var pl=['Ощущается '+nf(et),'Ветер '+W.wind_speed_10m.toFixed(1).replace('.',',')+' м/с','Осадки '+(W.precipitation||0).toFixed(1).replace('.',',')+' мм'];
+ if(W.cloud_cover!=null)pl.push('Облачность '+Math.round(W.cloud_cover)+'%');
+ if(d0&&d0.sr)pl.push('Светло '+d0.sr+'–'+d0.ss);
+ pl.forEach(function(x){pills.appendChild(el('span',null,x))});
+ var td=d0?d0.date:'',nh=new Date().getHours(),from=td+('0'+nh).slice(-2);
+ var list=H.filter(function(x){return (x.d+('0'+x.h).slice(-2))>=from}).slice(0,6);
+ if(!list.length){hs.hidden=true;return}
+ hs.hidden=false;
+ var wm=Math.max.apply(null,list.map(function(x){return x.w})),pm=Math.max.apply(null,list.map(function(x){return x.pp}));
+ $('hr-sum').textContent=ds[0]+'. Ветер до '+wm.toFixed(1).replace('.',',')+' м/с'+(pm>=40?'. Возможны осадки':'');
+ var st=$('hr-strip');st.innerHTML='';
+ list.forEach(function(x,i){
+  var c=el('div',null,null);if(i===0)c.style.borderColor='#1E2B3A';
+  c.appendChild(el('span',null,i===0?'Сейчас':(x.h<10?'0':'')+x.h+':00'));
+  var ic=el('span',null,icoH(x));ic.style.fontSize='22px';c.appendChild(ic);
+  c.appendChild(el('b',null,nf(x.t)));
+  if(x.pp>=40)c.appendChild(el('span',null,'☂ '+Math.round(x.pp)+'%'));
+  st.appendChild(c);
+ });
+}
+function doShare(tx,m){
+ if(!tx)return;
+ if(navigator.share){navigator.share({text:tx}).catch(function(){})}
+ else if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(tx).then(function(){m.textContent='Скопировано. Вставьте в мессенджер.'},function(){window.prompt('Скопируйте текст',tx)})}
+ else window.prompt('Скопируйте текст',tx);
+}
+var MON=['января','февраля','марта','апреля','мая','июня','июля','августа','сентября','октября','ноября','декабря'];
+var WD=['воскресенье','понедельник','вторник','среда','четверг','пятница','суббота'];
+function ymd(s){var p=s.split('-');return new Date(+p[0],+p[1]-1,+p[2])}
+function dateLabel(s,i){var dt=ymd(s);return (i===1?'Завтра, ':'')+WD[dt.getDay()]+', '+dt.getDate()+' '+MON[dt.getMonth()]}
+function shortDate(s){var dt=ymd(s);return dt.getDate()+'.'+(dt.getMonth()+1)}
+function dayChips(){
+ var c=$('dayp');if(!c)return;c.innerHTML='';
+ var WDS=['вс','пн','вт','ср','чт','пт','сб'];
+ var labels=['Сегодня','Завтра',null,null,'Неделя'];
+ [2,3].forEach(function(i){var dd=D[i];if(dd){var dt=ymd(dd.date);labels[i]=WDS[dt.getDay()]+' '+dt.getDate()+'.'+(dt.getMonth()+1<10?'0':'')+(dt.getMonth()+1)}else{labels[i]='+'+i}});
+ labels.forEach(function(lb,i){var b=el('button','chip'+(DAY===i?' on':''),lb);b.onclick=function(){DAY=i;advice()};c.appendChild(b)});
+}
+function plan(){
+ if(DAY===0){
+  if(!W)return null;
+  var hs0=D.length?H.filter(function(x){return x.d===D[0].date&&x.h>=7&&x.h<=21}):[];
+  return {today:true,label:'Сегодня',t:W.temperature_2m,et:W.apparent_temperature==null?W.temperature_2m:W.apparent_temperature,wind:W.wind_speed_10m,rain:W.precipitation>0,pp:null,cc:W.cloud_cover,isDay:W.is_day,tmin:null,tmax:null,hours:hs0};
+ }
+ var dd=D[DAY];if(!dd)return null;
+ return {today:false,label:dateLabel(dd.date,DAY),t:(dd.tmax+dd.tmin)/2,et:(dd.etmax+dd.etmin)/2,wind:dd.wmax,rain:dd.pp>=40,pp:dd.pp,cc:null,isDay:1,tmin:dd.tmin,tmax:dd.tmax,hours:DAY===1?H.filter(function(x){return x.d===dd.date&&x.h>=7&&x.h<=21}):[]};
+}
+function showAll(){
+ ['meter','lv-name','lv-cl','lv-note','lv-warn','tips','actw','check','bag-btn','b-share'].forEach(function(id){$(id).hidden=false});
+ document.querySelector('#rec .scale').hidden=false;
+}
+function weekView(){
+ $('rec').hidden=false;
+ ['meter','lv-name','lv-cl','lv-note','lv-warn','tips','fbw','actw','check','bag-btn','bag','b-share'].forEach(function(id){$(id).hidden=true});
+ document.querySelector('#rec .scale').hidden=true;
+ $('w-sub').textContent='Прогноз ориентировочный: на дальние дни точность ниже. Ближе к дате смотрите «Сегодня» и «Завтра».';
+ if(!D.length){$('w-main').textContent=wErr||'Погода не загружена';$('day').hidden=true;return}
+ $('w-main').textContent='Неделя: сводка без рекомендаций';
+ var day=$('day');day.innerHTML='';day.hidden=false;
+ D.slice(0,7).forEach(function(dd){var c=el('div',null,null);c.appendChild(el('span',null,shortDate(dd.date)));c.appendChild(el('b',null,fmt(dd.tmin)+' … '+fmt(dd.tmax)));if(dd.pp>=40)c.appendChild(el('span',null,'☂ '+Math.round(dd.pp)+'%'));day.appendChild(c)});
+}
+function advice(){
+ renderTop();
+ var box=$('adv');
+ if(!S.city){box.hidden=true;$('ideas').hidden=true;return}
+ box.hidden=TAB!==0;$('ideas').hidden=TAB!==1;
+ var k=kid();
+ tabsUi();
+ if(TAB===1){renderIdeas(false);return}
+ dayChips();
+ if(!k){$('w-main').textContent='Добавьте ребёнка в профиле';$('w-sub').textContent='';$('rec').hidden=true;return}
+ if(DAY===4){weekView();return}
+ var P=plan();
+ if(!P){$('w-main').textContent=wErr||'Погода не загружена';$('w-sub').textContent='';$('rec').hidden=true;return}
+ showAll();
+ var t=P.t,et=P.et,wind=P.wind,rain=P.rain;
+ $('w-main').textContent=k.name+' • '+(P.today?'Подходящая одежда':P.label+': от '+fmt(P.tmin)+' до '+fmt(P.tmax)+', ощущается около '+fmt(et));
+ var sx=P.cc==null?'':(P.isDay===0?'ночь':P.cc<25?'ясно':P.cc<70?'переменная облачность':'пасмурно');
+ $('w-sub').textContent=(P.today?'Ветер ':'Ветер до ')+wind.toFixed(1).replace('.',',')+' м/с · '+(rain?'есть осадки':'без осадков')+(P.pp!=null?' (вероятность '+Math.round(P.pp)+'%)':'')+(sx?' · '+sx:'');
+ var am=ageM(k.bd),yrs=Math.floor(am/12),inf=am<12,tw=+k.t||0,windy=wind>=5;
+ if(P.today)$('w-sub').textContent='';
+ $('share-msg').textContent='';
+ var act=S.act||'walk',as=inf?0:(act==='stroller'?1:act==='run'?-1:0);
+ $('actw').hidden=inf;
+ if(!inf){var ab=$('act');ab.innerHTML='';[['stroller','В коляске'],['walk','Идём'],['run','Бегаем']].forEach(function(a){var bt=el('button','chip'+(act===a[0]?' on':''),a[1]);bt.onclick=function(){S.act=a[0];sv();advice()};ab.appendChild(bt)})}
+ var W0=lvl(et),L=levelOf(et,k,act);
+ var m=$('meter');m.innerHTML='';
+ for(var i=0;i<=10;i++){var sg=document.createElement('i');sg.style.background=COL[i];if(i===W0)sg.className='on';m.appendChild(sg)}
+ $('lv-name').textContent=LV[W0][0];
+ var cl=$('lv-cl');cl.innerHTML='';
+ var R=W0>=10?LV[10]:inf?infRow(et-5*(L-W0),windy):LV[L].map(function(x){return x.replace('{F}',windy?' + флис (ветрено)':'')});
+ var lab=['Голова и шея','Руки','Верх','Низ','Обувь'];
+ var sr=[];if(W0<10)for(var j=0;j<5;j++){if(R[j+1]==='—')continue;var row=el('div','kv');row.appendChild(el('b',null,lab[j]));row.appendChild(el('span',null,R[j+1]));cl.appendChild(row);sr.push(lab[j]+': '+R[j+1])}
+ var ex=[];if(R[6])ex.push(R[6]);
+ if(rain&&W0<10)ex.push('Осадки: непромокаемый верх, обувь из мембраны или резиновые сапоги.');
+ if(W0>=1&&W0<=4&&P.isDay!==0&&P.cc!=null){if(P.cc<25)ex.push('Ясно: на солнце теплее, в тени и при ветре прохладнее — тонкий слой лучше взять с собой.');else if(P.cc>=70)ex.push('Пасмурно: без солнца прохладнее, чем кажется по температуре.')}
+ if(ex.length){var r2=el('div','kv');r2.appendChild(el('b',null,'Дополнительно'));r2.appendChild(el('span',null,ex.join(' ')));cl.appendChild(r2)}
+ SHARETXT=[k.name+', '+P.label.toLowerCase()+': '+LV[W0][0]+', ощущается '+fmt(et)].concat(W0<10?sr:['Лучше остаться дома']).concat(ex).join('\n');
+ var parts=[];
+ if(!inf&&as)parts.push((as>0?'+1':'−1')+' уровень: '+(as>0?'в коляске ребёнок мало двигается':'ребёнок активно двигается'));
+ if(tw)parts.push((tw>0?'+1':'−1')+' уровень: '+(tw>0?'часто мёрзнет':'часто потеет'));
+ var calv=(S.cal&&S.cal[k.id])||0;if(calv)parts.push((calv>0?'+':'')+calv.toFixed(1).replace('.',',')+' уровня по вашим отзывам');
+ $('lv-note').textContent=parts.length?'Поправки для '+k.name+': '+parts.join('; ')+'.':(inf?'Комплект для малыша до года: слип, конверт, пинетки.':'');
+ var w=$('lv-warn');w.innerHTML='';
+ function add(x){w.appendChild(el('div','warn',x))}
+ if(t>=32)add('Жара: гулять лучше до 11 и после 16, давайте пить чаще.');
+ if(et<=-25)add('Очень опасный холод: лучше остаться дома.');
+ else{
+  if(yrs<4&&t<-15&&wind>15)add('Детям до 4 лет при таком морозе и ветре гулять не рекомендуется (ориентир из норм для детсадов).');
+  else if(yrs>=4&&yrs<8&&t<-20&&wind>15)add('При таком морозе и ветре гулять не рекомендуется (ориентир из норм для детсадов).');
+  else if(t<-15&&wind>7)add('Мороз и ветер: прогулку лучше сократить (ориентир из норм для детсадов).');
+ }
+ if(wind>=10)add('Сильный ветер: нужна ветрозащитная куртка.');
+ var hs=P.hours,day=$('day');day.innerHTML='';day.hidden=!hs.length||DAY===0;
+ var nowH=new Date().getHours(),refH=P.today?nowH:7,tips=[];
+ var hhm=function(h){return (h<10?'0':'')+h+':00'};
+ if(hs.length){
+  hs.forEach(function(x){
+   x.L=levelOf(x.et,k,act);
+   var c=el('div',null,null);
+   c.appendChild(el('span',null,hhm(x.h)));
+   c.appendChild(el('b',null,fmt(x.t)));
+   var bar=el('i',null,null);bar.style.background=COL[x.L];c.appendChild(bar);
+   if(x.pp>=40)c.appendChild(el('span',null,'☂ '+Math.round(x.pp)+'%'));
+   if(P.today&&x.h===nowH)c.style.borderColor='#1E2B3A';
+   day.appendChild(c);
+  });
+  var later=hs.filter(function(x){return x.h>refH});
+  var colder=later.filter(function(x){return x.L>=L+2}),warmer=later.filter(function(x){return x.L<=L-2});
+  if(colder.length)tips.push('Ближе к '+hhm(colder[0].h)+' станет холоднее: возьмите слой в сумку.');
+  else if(warmer.length)tips.push('Ближе к '+hhm(warmer[0].h)+' станет теплее: часть одежды можно будет снять, не перегрейте.');
+ }
+ var pmax=hs.length?Math.max.apply(null,hs.map(function(x){return x.pp})):(P.pp||0);
+ var tmax=hs.length?Math.max.apply(null,hs.map(function(x){return x.t})):(P.tmax!=null?P.tmax:t);
+ var wmax=hs.length?Math.max.apply(null,hs.map(function(x){return x.w})):wind;
+ if(pmax>=40)tips.push('Возможны осадки (до '+Math.round(pmax)+'%): возьмите непромокаемый верх.');
+ if(tmax>=21)tips.push('Днём до '+Math.round(tmax)+'°: панама и вода с собой.');
+ if(wmax>=7)tips.push('Днём ветер до '+wmax.toFixed(1).replace('.',',')+' м/с: ветровка или куртка с капюшоном.');
+ var tb=$('tips');tb.innerHTML='';tips.forEach(function(x){tb.appendChild(el('div','tip',x))});
+ var isNow=DAY===0;
+ renderBag(P,k,act,L,inf,hs);
+ $('fbw').hidden=true; // обратная связь на паузе, код оставлен
+ if(isNow){
+  var fbk=$('fbw').querySelectorAll('button');for(var q2=0;q2<fbk.length;q2++)fbk[q2].disabled=fbDone;
+  var nk=(S.fb||[]).filter(function(x){return x.k===k.id}).length;
+  $('fbn').textContent='Сохранено отзывов: '+nk+'. Учитываем на этом устройстве.'+(fbDone?' Спасибо, записали.':'');
+ }
+ $('rec').hidden=false;
+}
+
+var BAGOPEN=false,BAGCTX=null,BAGTXT='';
+function todayKey(){var d=new Date();return d.getFullYear()+'-'+(d.getMonth()+1)+'-'+d.getDate()}
+function bagItems(P,k,act,L,inf,hs){
+ var t=P.t,et=P.et,wind=P.wind,dur=S.dur||2,mo=new Date().getMonth()+1;
+ var maxPP=hs.length?Math.max.apply(null,hs.map(function(x){return x.pp})):(P.pp||0);
+ var rain=P.rain||maxPP>=40;
+ var tmax=hs.length?Math.max.apply(null,hs.map(function(x){return x.t})):(P.tmax!=null?P.tmax:t);
+ var heat=et>=25||tmax>=25,cold=et<5,frost=t<=-5,sunny=P.cc!=null&&P.cc<25&&P.isDay!==0&&et>=15;
+ var stroller=inf||act==='stroller',refH=P.today?new Date().getHours():7;
+ var colder=hs.filter(function(x){return x.h>refH&&levelOf(x.et,k,act)>=L+2})[0];
+ var o={kid:[],st:[],me:[]};
+ function a(g,id,tx){o[g].push([id,tx])}
+ if(inf){
+  a('kid','dia',dur>=2?'Подгузники с запасом на всю прогулку и влажные салфетки':'Подгузник и влажные салфетки');
+  if(dur>=2||rain)a('kid','spare','Сменный комплект: боди, слип, носочки');
+  if(dur>=2)a('kid','feed','Питание и бутылочка, если нужны');
+ }else{
+  a('kid','spare','Сменные штаны и носки'+(rain?': в лужах пригодятся':''));
+  if(dur>=2||et>=15)a('kid','water','Вода в бутылочке или поильнике');
+  if(dur>=2)a('kid','snack','Перекус, который не крошится');
+  if(cold||rain)a('kid','mitt','Запасные варежки');
+ }
+ if(heat||sunny)a('kid','hat',inf?'Панама':'Панама или кепка; крем от солнца для детей, если нет тени');
+ if(frost)a('kid','cream','Колд-крем и детская помада для лица');
+ if(colder)a('kid','layer','Тёплый слой на случай похолодания: к '+(colder.h<10?'0':'')+colder.h+':00 станет холоднее');
+ if(stroller){
+  if(et<15||wind>=5)a('st','blanket','Плед или одеяло: укрыть при ветре, подстелить на дно коляски');
+  if(rain)a('st','rcover','Дождевик на коляску: только на короткое время, под ним душно');
+  if(cold)a('st','muff','Муфта на ручку коляски для рук');
+  if(heat||sunny)a('st','shade','Тент или зонт на коляску для тени');
+  if(mo>=6&&mo<=8&&et>=15)a('st','net','Москитная сетка — по необходимости');
+ }
+ a('me','core','Телефон, ключи, банковская карта');
+ if(dur>=3)a('me','pb','Пауэрбанк');
+ if(dur>=2||heat)a('me','mywater','Вода для себя'+(dur>=2?' и перекус':''));
+ if(rain)a('me','umb','Зонт');
+ if(cold)a('me','thermos','Термос с тёплым чаем');
+ return o;
+}
+function renderBag(P,k,act,L,inf,hs){
+ BAGCTX={P:P,k:k,act:act,L:L,inf:inf,hs:hs};
+ var btn=$('bag-btn');
+ btn.textContent='Что взять с собой '+(BAGOPEN?'▴':'▾');btn.setAttribute('aria-expanded',BAGOPEN?'true':'false');
+ $('bag').hidden=!BAGOPEN;
+ if(BAGOPEN)drawBag();
+}
+function drawBag(){
+ var C=BAGCTX;if(!C)return;
+ var P=C.P,k=C.k,dkey=P.today?todayKey():(D[DAY]?D[DAY].date:'x'),dur=S.dur||2;
+ var dc=$('bag-dur');dc.innerHTML='';
+ [[1,'до часа'],[2,'1–2 часа'],[3,'дольше 2 часов']].forEach(function(d){var b=el('button','chip'+(dur===d[0]?' on':''),d[1]);b.onclick=function(){S.dur=d[0];sv();advice()};dc.appendChild(b)});
+ var items=bagItems(P,k,C.act,C.L,C.inf,C.hs);
+ S.bagDone=S.bagDone||{};
+ var dk=k.id+'|'+dkey,done=S.bagDone[dk]||[],list=$('bag-list');list.innerHTML='';
+ var txt=['Что взять на прогулку: '+k.name+', '+P.label.toLowerCase()+', ощущается '+fmt(P.et)];
+ function row(id,tx,custom){
+  var isD=done.indexOf(id)>=0,r=el('label','bagrow'+(isD?' done':''));
+  var cb=document.createElement('input');cb.type='checkbox';cb.checked=isD;
+  cb.onchange=function(){var cur=S.bagDone[dk]||[],i=cur.indexOf(id);if(cb.checked){if(i<0)cur.push(id)}else if(i>=0)cur.splice(i,1);S.bagDone[dk]=cur;var ks=Object.keys(S.bagDone);if(ks.length>8)delete S.bagDone[ks[0]];sv();drawBag()};
+  r.appendChild(cb);r.appendChild(el('span',null,tx));
+  if(custom){var x=el('button','x','✕');x.onclick=function(e){e.preventDefault();S.bagMy[k.id]=S.bagMy[k.id].filter(function(v){return v!==tx});sv();drawBag()};r.appendChild(x)}
+  list.appendChild(r);txt.push((isD?'✓ ':'☐ ')+tx);
+ }
+ [['kid','Для ребёнка'],['st','Для коляски'],['me','Для вас']].forEach(function(g){
+  var arr=items[g[0]];if(!arr.length)return;
+  list.appendChild(el('h4',null,g[1]));txt.push('');txt.push(g[1]+':');
+  arr.forEach(function(it){row(it[0],it[1],false)});
+ });
+ var my=(S.bagMy&&S.bagMy[k.id])||[];
+ if(my.length){list.appendChild(el('h4',null,'Свои пункты'));txt.push('');txt.push('Свои пункты:');my.forEach(function(tx){row('c:'+tx,tx,true)})}
+ BAGTXT=txt.join('\n');
+}
+function addMy(){
+ var k=kid();if(!k)return;var v=$('bag-in').value.trim().slice(0,60);if(!v)return;
+ S.bagMy=S.bagMy||{};var a=S.bagMy[k.id]=S.bagMy[k.id]||[];
+ if(a.indexOf(v)<0&&a.length<20)a.push(v);
+ $('bag-in').value='';sv();drawBag();
+}
+var IDEAS=[
+["i1","i","Прогулка с целью","Дойдите пешком до аптеки, булочной или почты: у прогулки появляется смысл, а малыш спокойно спит.",0,["calm"],"30–60 мин","для мамы"],
+["i2","i","Кофе на скамейке","Купите напиток с крышкой и выпейте его на скамейке в месте без ветра. Горячее держите подальше от ребёнка и не ставьте на коляску.",0,["dry","calm"],"20–30 мин","для мамы"],
+["i3","i","Звонок на ходу","Позвоните подруге или родным по гарнитуре: на прогулке удобно поговорить, не отвлекаясь на домашние дела.",0,["calm"],"20–40 мин","общение"],
+["i4","i","Подкаст в одном наушнике","Слушайте аудио одним наушником и негромко, чтобы слышать малыша и дорогу.",0,["any"],"30–60 мин","для мамы"],
+["i5","i","Новый маршрут недели","Раз в неделю идите по улице или двору, где ещё не были. Цель: найти три места — скамейку в тени, красивый двор, тихий сквер.",0,["dry"],"1–2 ч","маршрут"],
+["i6","i","Листья над головой","Остановитесь под деревом и дайте малышу посмотреть, как колышутся ветки. Подойдёт, когда он уже следит глазами.",3,["dry","calm"],"10–15 мин","для малыша"],
+["i7","i","Рассказ обо всём вокруг","Говорите с малышом спокойно и вслух: «вот собака, вот машина, вот лужа». Ничего придумывать не нужно, достаточно описывать, что видите.",0,["any"],"любое","для малыша"],
+["i8","i","Фото одного места","Раз в неделю снимайте одно и то же место: через месяц получится летопись смены погоды и сезона.",0,["any"],"5 мин","для мамы"],
+["i9","i","Визит на полчаса","Дойдите до бабушки или подруги, посидите полчаса и вернитесь. В гостях снимите шапку и расстегните комбинезон, чтобы малыш не вспотел.",0,["dry","nofrost"],"1–2 ч","общение"],
+["i10","i","Книга на скамейке","Возьмите книгу или читалку, найдите скамейку без ветра и почитайте 20 минут, пока малыш спит.",0,["dry","calm","ge10"],"20–30 мин","для мамы"],
+["i11","i","Быстрый шаг с интервалами","Три минуты быстро, две спокойно с коляской. После родов только если врач разрешил нагрузку.",0,["comf"],"20–30 мин","для мамы"],
+["i12","i","Маршрут под козырьками","В лёгкий дождь выбирайте дорогу с навесами, арками и крытыми остановками. Дождевик на коляске только на короткое время: под ним быстро становится душно.",0,["lrain"],"20–40 мин","маршрут"],
+["i13","i","У воды","Дойдите до пруда, реки или фонтана: блики и птицы привлекают взгляд малыша. К самому краю не подходите.",6,["dry","calm","notcold"],"30–60 мин","для малыша"],
+["i14","i","Голосовые заметки","Наговаривайте на ходу дела, мысли и список покупок: голова освобождается, а руки остаются на коляске.",0,["any"],"15–30 мин","для мамы"],
+["i15","i","Перекус и термос","Возьмите чай в термосе и что-нибудь лёгкое для себя, сделайте остановку на 15 минут.",0,["dry","chill"],"15–20 мин","для мамы"],
+["i16","i","Закат","Выходите за час до заката и дойдите туда, где видно небо. Идите по тихим дорожкам, подальше от дороги.",0,["dry"],"1 ч","для мамы"],
+["i17","i","Малыш на груди","В слинге или эргорюкзаке руки свободны, а малышу тепло рядом с вами. Пользуйтесь по инструкции производителя и подходящему возрасту, помните, что слинг — ещё один слой одежды.",0,["coldwind"],"30–60 мин","для мамы"],
+["i18","i","Тёплая остановка","В дождь, мороз или жару зайдите в торговый центр или библиотеку и пройдитесь внутри. Снимите шапку и расстегните комбинезон.",0,["bad"],"30–60 мин","для мамы"],
+["i19","i","Прогулка в компании","Договоритесь с другой мамой встретиться в парке и пройти маршрут вместе: так проще выйти даже в неуютную погоду.",0,["ok"],"1–2 ч","общение"],
+["i20","i","Минута тишины","Остановитесь на пять минут и дайте малышу послушать ветер, птиц и шаги. Ничего не давайте в рот, показывайте только крупные чистые листья.",3,["dry"],"5–10 мин","для малыша"],
+["w1","w","Поймай листик","Осенью ловим падающие листья и собираем яркий букет.",18,["dry","calm","autumn"],"20–40 мин","игра"],
+["w2","w","Лужи в сапогах","После дождя в сапогах и непромокаемом комплекте прыгаем по лужам и смотрим круги. Глубину заранее проверьте палкой сами.",18,["wet","notcold"],"20–40 мин","игра"],
+["w3","w","Чьи следы?","По снегу или сырой земле идём по следам друг друга и сравниваем: чьи больше, чьи глубже.",18,["tracks"],"15–30 мин","наблюдение"],
+["w4","w","Колобок из снега","Лучше всего снег лепится около нуля: катаем комок, строим снеговика, носим снег в ведёрке.",24,["snowy"],"30–45 мин","игра"],
+["w5","w","Цветная охота","Назовите цвет и найдите вокруг три предмета такого цвета: красный, жёлтый, зелёный.",24,["dry","calm"],"15–30 мин","наблюдение"],
+["w6","w","Сокровища в ведёрке","Собираем крупные листья, шишки и палочки, дома раскладываем. Мелкие камешки, ягоды и грибы не берём, следите, чтобы ничего не оказалось во рту.",18,["dry"],"20–40 мин","игра"],
+["w7","w","Лови свою тень","В ясный день догоняем тень, прыгаем на неё, меняем позы.",24,["clear"],"10–20 мин","игра"],
+["w8","w","Вода и тень","В жару выходите до 11 или после 16, ищите тень и играйте с водой: ведёрко, лейка, ручей. Панама и вода с собой.",18,["heat"],"30–45 мин","игра"],
+["w9","w","Мыльные пузыри","Пускайте пузыри, а малыш ловит и лопает. Подальше от дороги, раствор в рот не брать.",18,["dry","ge10","light"],"15–20 мин","игра"],
+["w10","w","Кто как ходит","Идём, как медведь, заяц, цапля, лягушка. Хорошо, когда нужно согреться.",24,["cold","ok"],"10–20 мин","движение"],
+["w11","w","Горка и очередь","Учимся ждать очередь на горке и качелях, считаем «раз, два, три». Перед игрой проверьте, не мокрая и не обледенела ли горка.",18,["dry"],"30–60 мин","площадка"],
+["w12","w","Кормим птиц","Возьмите несолёные семечки или пшено, хлеб не давайте. Смотрим, кто прилетел и кто быстрее.",18,["dry","chill"],"15–20 мин","наблюдение"],
+["w13","w","Рисуем мелом","Рисуем на асфальте дорожку, солнышко и большие круги, перепрыгиваем через них. Мел пробовать нельзя.",24,["dry","warm"],"20–40 мин","творчество"],
+["w14","w","Ленточка на ветру","Привяжите ленточку к палочке и бегайте так, чтобы она летела. Слушаем, как дует ветер.",24,["dry","breeze","ge10"],"15–20 мин","игра"],
+["w15","w","Дождь под навесом","В тёплый лёгкий дождь постойте под навесом или в беседке: слушаем капли, ловим на ладонь. При грозе сразу домой.",24,["warmrain"],"10–20 мин","наблюдение"],
+["w16","w","Ледяные сокровища","Дома заморозьте в формочках воду с листиком, шишкой или ленточкой и вынесите на улицу: повесить на дерево или положить на снег.",24,["frost"],"20–30 мин","творчество"],
+["w17","w","Полоса препятствий","Бордюр, бревно, кочки: идём, перешагиваем, прыгаем двумя ногами. Вы рядом и страхуете.",24,["dry","ge0"],"20–30 мин","движение"],
+["w18","w","Поход в магазин","Возьмите три картинки: хлеб, яблоко, молоко. Малыш сам кладёт покупки в корзину.",24,["bad"],"20–30 мин","дела"],
+["w19","w","Звуковая охота","Остановитесь в безопасном месте на 20 секунд с закрытыми глазами и назовите звуки: машина, птица, ветер. Потом пусть вопрос задаёт малыш.",24,["calm","ok"],"5–10 мин","наблюдение"],
+["w20","w","Поезд","Ходим цепочкой по дорожке, как вагоны: «станция Горка», «станция Скамейка».",18,["ok"],"15–30 мин","игра",48],
+["i21","i","Тень на весь путь","В жару выберите маршрут вдоль домов и деревьев, где тень почти всё время, и выходите до 11 или после 16. Следите, чтобы малыш не перегрелся, и кормите по требованию.",0,["heat"],"30–45 мин","для мамы"],
+["i22","i","Аллея с густой кроной","Найдите аллею, где деревья смыкаются над головой: в тени комфортнее вам и малышу, а шелест листьев приятно слушать.",0,["dry","warm","calm"],"20–40 мин","маршрут"],
+["i23","i","Скамейка без ветра","В ветреный день выберите двор или аллею между домами и посидите там, где ветра меньше. Коляску поставьте спиной к ветру.",0,["windy"],"20–30 мин","для мамы"],
+["i24","i","Короткий выход в мороз","В сильный мороз вместо долгой прогулки сходите в ближайший магазин и сразу вернитесь: свежий воздух есть, а малыш не мёрзнет. Лишнее снимите уже на входе.",0,["frost"],"10–15 мин","для мамы"],
+["i25","i","Первый снег","Покажите малышу снег: остановитесь и дайте ему посмотреть, как снег падает или лежит. Трогать его руками не нужно.",0,["snowy"],"5–10 мин","для малыша"],
+["i26","i","Дождь под козырьком","Постойте под козырьком подъезда или навесом и послушайте дождь: малыш слушает, а вы немного отдыхаете.",0,["lrain"],"5–10 мин","для малыша"],
+["i27","i","Яркие пятна","Идите вдоль клумб, витрин и цветных домов: яркие пятна интересно рассматривать, а вам не нужно ничего придумывать.",2,["dry"],"20–30 мин","для малыша"],
+["i28","i","Шуршание листьев","Пройдитесь по аллее с опавшими листьями и вместе послушайте шорох под колёсами и ногами.",0,["dry","autumn"],"15–20 мин","для малыша"],
+["i29","i","Весенние звуки","Весной остановитесь и послушайте капель и птиц: звуков на улице много, малышу достаточно просто слушать.",0,["spring","calm"],"10 мин","для малыша"],
+["i30","i","Площадка со стороны","Сядьте на лавочку рядом с площадкой и дайте малышу понаблюдать за играющими детьми на безопасном расстоянии.",4,["dry","ok"],"30–45 мин","для малыша"],
+["i31","i","Остановка и переход","Постойте поодаль от края дороги и посмотрите на автобусы и трамваи: движение привлекает внимание малыша.",6,["calm","ok"],"10–15 мин","для малыша"],
+["i32","i","Прогулка на время сна","Если малыш хорошо спит в коляске, выберите прогулку на время дневного сна: у вас будет свободный час.",0,["calm"],"1–2 ч","для мамы"],
+["i33","i","Сумка заранее","Соберите сумку заранее: сменный подгузник, салфетки, вода, плед. Тогда выход занимает пять минут.",0,["any"],"5 мин","для мамы"],
+["i34","i","Солнечная сторона улицы","В ясный холодный день идите по солнечной стороне: там теплее и светлее.",0,["clear","cold"],"20–30 мин","маршрут"],
+["i35","i","Лишний круг","Если малыш спит, не спешите домой: пройдите ещё один круг или посидите десять минут без дел.",0,["calm"],"10–15 мин","для мамы"],
+["i36","i","Радость для себя","Зайдите в пекарню или цветочный магазин рядом с домом и купите себе небольшую радость: прогулка станет приятнее.",0,["ok"],"20–30 мин","для мамы"],
+["i37","i","Две скамейки","Выберите на маршруте два места для отдыха и отдыхайте в каждом по пять минут: прогулка делится на удобные куски.",0,["dry","calm"],"30–45 мин","маршрут"],
+["i38","i","Фото родным","Сфотографируйте малыша и отправьте папе или бабушке: так они участвуют в прогулке.",0,["any"],"5 мин","общение"],
+["i39","i","Яркий маршрут в серый день","В пасмурный день выберите самый яркий путь: клумбы, витрины, цветные дома. Так прогулка получается веселее.",0,["cloudy","dry"],"20–30 мин","маршрут"],
+["i40","i","Фонтан в жару","В жару пройдите к фонтану или водоёму в тени: рядом заметно прохладнее. К воде близко не подходите.",4,["heat"],"20–30 мин","маршрут"],
+["w21","w","Кораблики в луже","Пускайте в луже бумажные кораблики или листья-лодки и дуйте на них. Одежда непромокаемая, сапоги на ногах.",24,["wet","notcold"],"15–20 мин","игра"],
+["w22","w","Зонт-барабан","Возьмите зонт и послушайте, как стучат капли. Потом постучите по зонту палочкой: тише, громче, быстро, медленно.",18,["lrain"],"10–15 мин","игра"],
+["w23","w","Улитки и червяки","После дождя ищем на дорожках улиток и дождевых червей. Смотрим и не трогаем: так мы им не навредим.",24,["wet","notcold"],"15–20 мин","наблюдение"],
+["w24","w","Рисуем палочкой по мокрому","На мокрой земле или песке рисуем палочкой дорожки, круги и солнышко.",18,["wet"],"15–20 мин","творчество"],
+["w25","w","Снежные ангелы","Ложимся на снег и машем руками и ногами, получается след-ангел. Одежда должна быть непромокаемой.",24,["snowy"],"10–15 мин","игра"],
+["w26","w","Снежки в цель","Лепим снежки и бросаем в цель: дерево, ведро, нарисованный на снегу круг. Бросаем не друг в друга.",36,["snowy"],"15–20 мин","игра"],
+["w27","w","Снежная горка","Сгребаем лопатками снег в горку и катаем по ней машинку или санки.",24,["snowy"],"20–30 мин","игра"],
+["w28","w","Санки","Катаемся на санках с небольшой горки, вы рядом. Перед спуском проверьте, нет ли впереди людей и дороги.",24,["winter","nofrost"],"30–60 мин","движение"],
+["w29","w","Следы зверей","Ищем на снегу следы птиц, кошек и собак и сравниваем с отпечатками своих ботинок.",36,["tracks"],"15–30 мин","наблюдение"],
+["w30","w","Рисуем водой","Рисуем на асфальте водой и большой кисточкой: рисунок высыхает, и можно рисовать снова.",18,["heat"],"15–20 мин","творчество"],
+["w31","w","Песочница в тени","Играем в песочнице в тени: куличики, формочки, ведёрко. Песок в рот не берём, после игры моем руки.",18,["dry","warm"],"30–45 мин","игра"],
+["w32","w","Прятки за деревьями","Прячемся за деревьями и скамейками: вы считаете до десяти, ребёнок ищет, потом меняемся.",36,["dry","ok"],"15–30 мин","игра"],
+["w33","w","Вертушка","Дайте ребёнку вертушку и бегайте вместе: смотрим, в какую сторону её крутит ветер.",18,["dry","breeze"],"15–20 мин","игра"],
+["w34","w","Воздушный змей","Запускаем воздушный змей на открытом месте, где нет проводов и дороги.",48,["dry","breeze","ge10"],"20–40 мин","игра"],
+["w35","w","Двор без ветра","В сильный ветер идите во двор между домами и играйте там, где ветра нет: в догонялки или мяч.",24,["windy","dry"],"20–30 мин","игра"],
+["w36","w","Согревающая эстафета","Бежим до дерева и обратно, потом до скамейки: считаем, кто быстрее согреется.",36,["cold","ok"],"10–20 мин","движение"],
+["w37","w","Тёплый чай на остановке","Возьмите тёплый несладкий чай в термосе и сделайте остановку на пять минут: пьём, смотрим вокруг.",24,["cold","dry"],"5–10 мин","остановка"],
+["w38","w","Весенние ручьи","Весной ищем ручейки и пускаем по ним щепки или листья. У воды держим ребёнка за руку.",24,["spring","notcold"],"20–30 мин","игра"],
+["w39","w","Почки на ветках","Смотрим на почки: какие уже раскрылись, какие ещё закрыты. Ищем самый большой листочек.",36,["spring","dry"],"10–20 мин","наблюдение"],
+["w40","w","Букет из листьев","Собираем листья разных цветов и составляем из них картинку на скамейке или земле.",24,["autumn","dry"],"20–30 мин","творчество"],
+["w41","w","Листопад-душ","Подбрасываем охапки сухих листьев вверх и ловим.",18,["autumn","dry","calm"],"10–15 мин","игра"],
+["w42","w","Шаги и числа","Считаем шаги до каждого дерева, пишем палочкой числа на земле или песке.",36,["dry"],"15–20 мин","игра"],
+["w43","w","Классики","Рисуем мелом классики и прыгаем: сначала двумя ногами, потом на одной. Мел не пробуем.",48,["dry","warm"],"15–30 мин","движение"],
+["w44","w","Облака-зверушки","Остановитесь и ищем в облаках знакомые формы: зайца, машину, дом.",36,["dry","clouds","calm"],"10–15 мин","наблюдение"],
+["w45","w","Солнечный зайчик","Поймайте зеркальцем зайчик на стене, а ребёнок пусть его ловит. В глаза не направляйте.",24,["clear","dry"],"10–15 мин","игра"],
+["w46","w","Серый день: ищем яркое","В пасмурный день ищем самые яркие вещи вокруг: красные двери, жёлтые листья, цветные машины.",24,["cloudy","dry"],"15–30 мин","наблюдение"],
+["w47","w","Экспедиция","Придумайте цель: дойти до речки или большого дерева. Берём рюкзачок с водой и яблоком.",36,["ok","dry"],"1 ч","маршрут"],
+["w48","w","Фотоохота","Дайте ребёнку телефон или старый фотоаппарат под присмотром: пусть сфотографирует пять любимых вещей.",36,["dry"],"20–30 мин","творчество"],
+["w49","w","Помощник","Попросите ребёнка понести лёгкий пакет, бросить письмо в ящик, нажать кнопку светофора вместе с вами.",24,["ok"],"20–30 мин","дела"],
+["w50","w","Кто работает на улице","Смотрим, кто работает вокруг: дворник, водитель, строитель. Спрашиваем: что он делает и зачем.",36,["ok"],"15–30 мин","наблюдение"],
+["w51","w","Шалаш из веток","Складываем гладкие палочки в шалаш для игрушки. Острые и сломанные ветки не берём.",36,["dry","notcold"],"20–30 мин","творчество"],
+["w52","w","Облачко пара","На морозе дышим «паром» и смотрим, как он поднимается. Потом дышим и идём, как паровоз.",24,["frost","ok"],"5–10 мин","игра"],
+["w53","w","Снежный огород","Втыкаем в снег палочки и «сажаем» огород: морковки из шишек, цветы из листьев.",36,["snowy"],"20–30 мин","творчество"],
+["w54","w","Поливаем двор","Наливаем воду в бутылки и поливаем цветы или асфальт во дворе, как в саду.",24,["heat"],"20–30 мин","игра"],
+["w55","w","Жучки и бабочки","Смотрим на траве жуков, бабочек и муравьёв. Руками не трогаем, только наблюдаем.",24,["summer","dry","warm"],"15–30 мин","наблюдение"],
+["w56","w","Библиотека рядом","Зайдите в библиотеку или детскую комнату торгового центра: посмотрите книги с картинками и поиграйте полчаса.",24,["bad"],"30–40 мин","в помещении"],
+["w57","w","Считаем этажи","В торговом центре едем на лифте и считаем этажи: ребёнок нажимает кнопки вместе с вами. На эскалаторе держите за руку.",24,["bad"],"15–20 мин","в помещении"],
+["w58","w","Цветочный магазин","Зайдите в цветочный или овощной магазин: называем цвета, считаем фрукты, нюхаем зелень.",18,["bad"],"15–20 мин","в помещении"],
+["w59","w","Ступеньки в подъезде","Если дождь льёт сильно, потренируйтесь в подъезде: поднимаемся и спускаемся по ступенькам, держась за перила.",24,["bad"],"10–15 мин","в помещении"],
+["w60","w","Дождь у окна","Постойте в подъезде у окна и смотрим на капли: чья капля быстрее стечёт вниз.",18,["bad"],"10 мин","в помещении"],
+["w61","w","Рыбки и птицы","Зайдите в зоомагазин или кафе с аквариумом и посмотрите на рыбок и птиц. Руками животных не трогаем.",24,["bad"],"15–20 мин","в помещении"]];
+function tabsUi(){$('t-0').className=TAB===0?'on':'';$('t-1').className=TAB===1?'on':''}
+function wxTokens(){
+ var t=W.temperature_2m,et=W.apparent_temperature==null?t:W.apparent_temperature,wind=W.wind_speed_10m,p=W.precipitation||0,rain=p>0,cc=W.cloud_cover,day=W.is_day!==0;
+ var nowH=new Date().getHours(),td=D.length?D[0].date:'';
+ var recent=H.some(function(x){return x.d===td&&x.h<=nowH&&x.h>=nowH-3&&x.pp>=50});
+ var mo=new Date().getMonth()+1,winter=mo===12||mo<=2,k={any:1},bad=rain||t<=-10||et>=25;
+ if(!rain)k.dry=1;
+ if(wind<7)k.calm=1; if(wind<5)k.light=1; if(wind>=3&&wind<7)k.breeze=1;
+ if(t>-10)k.nofrost=1; if(et>=10)k.ge10=1; if(t>0)k.ge0=1; if(et>=-5&&et<22)k.comf=1;
+ if(rain&&p<=1.5)k.lrain=1; if(rain&&p<=1.5&&t>=10)k.warmrain=1;
+ if(et>=5)k.notcold=1; if(et<20)k.chill=1; if(et<5)k.cold=1; if(et>=15)k.warm=1; if(et>=25)k.heat=1;
+ if(t<=-3)k.frost=1; if(et<10||wind>=5)k.coldwind=1;
+ if(bad)k.bad=1; else k.ok=1;
+ if(rain||recent)k.wet=1;
+ if(winter)k.winter=1; if(mo>=3&&mo<=5)k.spring=1; if(mo>=6&&mo<=8)k.summer=1;
+ if(cc!=null&&cc>=70)k.cloudy=1; if(cc!=null&&cc>=30&&cc<=90&&day)k.clouds=1; if(wind>=7)k.windy=1;
+ if(mo>=9&&mo<=11)k.autumn=1;
+ if(k.wet||(winter&&t<=0))k.tracks=1;
+ if(((rain&&t<=1)||winter)&&t<=1&&t>=-5)k.snowy=1;
+ if(cc!=null&&cc<25&&day)k.clear=1;
+ return k;
+}
+function shuf(a){for(var i=a.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1)),x=a[i];a[i]=a[j];a[j]=x}return a}
+function ideaPool(k,tok){
+ var m=ageM(k.bd),g=m<18?'i':'w';
+ return IDEAS.filter(function(x){return x[1]===g&&m>=x[4]&&(x[8]==null||m<x[8])&&x[5].every(function(t){return tok[t]})});
+}
+function pickIdeas(k,tok){
+ var pool=ideaPool(k,tok);S.seen=S.seen||{};
+ var seen=S.seen[k.id]||[];
+ var SP={heat:3,frost:3,snowy:3,warmrain:3,lrain:3,bad:2,clear:2,wet:2,breeze:2,windy:2,tracks:1,autumn:1,winter:1,spring:1,summer:1,cloudy:1,clouds:1,cold:1,coldwind:1};
+ var sp=function(x){return x[5].reduce(function(a,t){return a+(SP[t]||0)},0)};
+ var fresh=shuf(pool.filter(function(x){return seen.indexOf(x[0])<0})).sort(function(a,b){return sp(b)-sp(a)});
+ var old=pool.filter(function(x){return seen.indexOf(x[0])>=0}).sort(function(a,b){return seen.indexOf(b[0])-seen.indexOf(a[0])});
+ var out=[],ty={};
+ [fresh,old].forEach(function(lst){
+  lst.forEach(function(x){if(out.length<3&&!ty[x[7]]){out.push(x);ty[x[7]]=1}});
+  lst.forEach(function(x){if(out.length<3&&out.indexOf(x)<0)out.push(x)});
+ });
+ var ids=out.map(function(x){return x[0]});
+ S.seen[k.id]=ids.concat(seen.filter(function(i){return ids.indexOf(i)<0})).slice(0,25);sv();
+ return ids;
+}
+function renderIdeas(force){
+ var k=kid(),h=$('id-head'),l=$('id-list'),sub=$('id-sub'),more=$('id-more');
+ if(!W||!k){h.textContent=wErr||'Погода не загружена';sub.textContent='';l.innerHTML='';more.hidden=true;return}
+ var et0=W.apparent_temperature==null?W.temperature_2m:W.apparent_temperature,iw=$('id-warn');iw.innerHTML='';
+ if(et0<=-25){h.textContent='Идеи для прогулки: '+k.name;sub.textContent='';iw.appendChild(el('div','warn','Очень опасный холод: идеи для прогулки не показываем, лучше остаться дома.'));l.innerHTML='';more.hidden=true;return}
+ if(ageM(k.bd)<12&&W.temperature_2m<=-10)iw.appendChild(el('div','warn','При морозе ниже −10° с малышом до года прогулку лучше сократить или отложить (ориентир из финских рекомендаций).'));
+ var tok=wxTokens(),pool=ideaPool(k,tok);
+ if(force||!ideaCur||ideaCur.k!==k.id)ideaCur={k:k.id,ids:pickIdeas(k,tok)};
+ var et=W.apparent_temperature==null?W.temperature_2m:W.apparent_temperature;
+ h.textContent='Идеи для прогулки: '+k.name;
+ sub.textContent='Подобрано под погоду сейчас: '+fmt(W.temperature_2m)+' (ощущается '+fmt(et)+'), ветер '+W.wind_speed_10m.toFixed(1).replace('.',',')+' м/с, '+(W.precipitation>0?'есть осадки':'без осадков')+'. Подходящих идей: '+pool.length+'.';
+ l.innerHTML='';
+ ideaCur.ids.forEach(function(id){
+  var x=IDEAS.filter(function(i){return i[0]===id})[0];if(!x)return;
+  var c=el('div','idea');c.appendChild(el('h3',null,x[2]));c.appendChild(el('p',null,x[3]));
+  var m=el('div','meta');m.appendChild(el('span',null,x[6]));m.appendChild(el('span',null,x[7]));c.appendChild(m);l.appendChild(c);
+ });
+ if(!ideaCur.ids.length){l.appendChild(el('p','mut','Под такую погоду подходящих идей пока нет. Попробуйте позже или посмотрите другой день.'))}
+ more.hidden=pool.length<=3;
+}
+var qTimer=null,qTok=0;
+function searchCity(auto){
+ var q=$('q').value.trim(),r=$('res');
+ if(q.length<2){r.innerHTML='';return}
+ var tok=++qTok;
+ if(!auto)r.textContent='Ищу…';
+ fetch('https://geocoding-api.open-meteo.com/v1/search?name='+encodeURIComponent(q)+'&count=20&language=ru&format=json&countryCode=RU')
+ .then(function(x){if(!x.ok)throw new Error('HTTP '+x.status);return x.json()})
+ .then(function(d){
+  if(tok!==qTok)return;
+  r.innerHTML='';
+  var list=(d.results||[]).filter(function(c){return /^PPL(A\d?|C|S|L)?$/.test(c.feature_code||'')});
+  list.sort(function(a,b){return (b.population||0)-(a.population||0)});
+  list=list.slice(0,10);
+  if(!list.length){r.textContent='Ничего не найдено. Попробуйте написать название полностью.';return}
+  list.forEach(function(c){
+   var parts=[c.admin2,c.admin1].filter(function(v,i,arr){return v&&arr.indexOf(v)===i});
+   var kind=c.feature_code==='PPLC'?'столица':/^PPLA/.test(c.feature_code)?'административный центр':'населённый пункт';
+   var b=document.createElement('button');
+   b.appendChild(document.createTextNode(c.name));
+   b.appendChild(el('span','mut',kind+(parts.length?' · '+parts.join(', '):'')));
+   b.onclick=function(){setCity({name:c.name,reg:parts.join(', '),lat:c.latitude,lon:c.longitude})};
+   r.appendChild(b);
+  });
+ }).catch(function(){if(tok===qTok)r.textContent='Поиск недоступен. Проверьте интернет.'});
+}
+function openSheet(){
+ var p=$('prof');p.innerHTML='';
+ p.appendChild(el('div',null,S.user.name));
+ p.appendChild(el('div','mut',S.user.email));
+ if(S.user.phone)p.appendChild(el('div','mut',S.user.phone));
+ klist();$('addk').hidden=true;$('b-addk').hidden=false;
+ $('sheet').hidden=false;
+}
+function klist(){
+ var b=$('klist');b.innerHTML='';
+ S.kids.forEach(function(k){
+  var r=el('div','kr');r.appendChild(el('span',null,k.name+' · '+ageText(k.bd)));
+  if(S.kids.length>1){var d=el('button',null,'Удалить');d.onclick=function(){
+   S.kids=S.kids.filter(function(x){return x.id!==k.id});if(S.kid===k.id)S.kid=S.kids[0].id;sv();klist();chips();advice()};r.appendChild(d)}
+  b.appendChild(r);
+ });
+}
+
+$('r-kid').innerHTML=kf('r-k');$('a-kid').innerHTML=kf('a-k');
+$('r-kd').max=$('a-kd').max=today();
+
+$('r-go').onclick=function(){
+ var n=$('r-name').value.trim(),m=$('r-mail').value.trim();
+ if(!n)return showErr('r-err','Укажите ваше имя');
+ if(!/^\S+@\S+\.\S+$/.test(m))return showErr('r-err','Проверьте адрес электронной почты');
+ var k=readKid('r-k');if(k.e)return showErr('r-err',k.e);
+ if(!$('r-ok').checked)return showErr('r-err','Нужно согласие на обработку персональных данных');
+ showErr('r-err','');
+ S={user:{name:n,email:m,phone:$('r-tel').value.trim(),ads:$('r-ad').checked},kids:[k.k],kid:k.k.id};
+ sv();start();
+};
+$('b-set').onclick=openSheet;
+$('b-x').onclick=function(){$('sheet').hidden=true};
+$('b-addk').onclick=function(){$('addk').hidden=false;$('b-addk').hidden=true};
+$('b-savek').onclick=function(){
+ var k=readKid('a-k');if(k.e)return showErr('a-err',k.e);
+ showErr('a-err','');S.kids.push(k.k);S.kid=k.k.id;sv();
+ $('a-kn').value='';$('a-kd').value='';$('a-kt').value='0';
+ $('addk').hidden=true;$('b-addk').hidden=false;klist();chips();advice();
+};
+$('b-out').onclick=function(){
+ if(!confirm('Удалить все данные профиля на этом устройстве?'))return;
+ S={};W=null;mem={};try{localStorage.removeItem('kid_app')}catch(e){}
+ $('sheet').hidden=true;$('r-name').value=$('r-mail').value=$('r-tel').value='';start();
+};
+$('b-city').onclick=function(){var p=$('cpanel');p.dataset.open=p.hidden?'1':'0';p.hidden=!p.hidden};
+$('b-find').onclick=function(){clearTimeout(qTimer);searchCity(false)};
+$('q').oninput=function(){clearTimeout(qTimer);qTimer=setTimeout(function(){searchCity(true)},350)};
+$('q').onkeydown=function(e){if(e.key==='Enter'){clearTimeout(qTimer);searchCity(false)}};
+$('b-geo').onclick=function(){
+ var r=$('res');
+ if(!navigator.geolocation){r.textContent='Геолокация недоступна. Найдите город через поиск.';return}
+ r.textContent='Определяю…';
+ navigator.geolocation.getCurrentPosition(function(p){setCity({name:'Моё местоположение',lat:p.coords.latitude,lon:p.coords.longitude})},
+  function(){r.textContent='Не удалось определить местоположение. Найдите город через поиск.'},{timeout:10000});
+};
+$('b-ref').onclick=function(){W=null;loadW(true)};
+CITIES.forEach(function(c){var b=el('button','chip',c[0]);b.onclick=function(){setCity({name:c[0],lat:c[1],lon:c[2]})};$('quick').appendChild(b)});
+
+$('b-share').onclick=function(){doShare(SHARETXT,$('share-msg'))};
+$('bag-btn').onclick=function(){BAGOPEN=!BAGOPEN;advice()};
+$('bag-add').onclick=addMy;
+$('bag-in').onkeydown=function(e){if(e.key==='Enter')addMy()};
+$('bag-send').onclick=function(){
+ var tx=BAGTXT,m=$('bag-msg');if(!tx)return;
+ if(navigator.share){navigator.share({text:tx}).catch(function(){})}
+ else if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(tx).then(function(){m.textContent='Список скопирован. Вставьте его в мессенджер.'},function(){window.prompt('Скопируйте список',tx)})}
+ else window.prompt('Скопируйте список',tx);
+};
+$('t-0').onclick=function(){TAB=0;advice()};
+$('t-1').onclick=function(){TAB=1;advice()};
+$('id-more').onclick=function(){renderIdeas(true)};
+var fbb=$('fbw').querySelectorAll('button');
+for(var q3=0;q3<fbb.length;q3++){fbb[q3].onclick=(function(b){return function(){fbSet(b.getAttribute('data-f'))}})(fbb[q3])}
+start();
+})();
+</script>
+</body>
+</html>
